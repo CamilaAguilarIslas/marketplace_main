@@ -23,7 +23,7 @@ def detail(request, pk):
     related_items=Item.objects.filter(category=item.category, is_solid=False).exclude(pk=pk)[0:3]
 
     context={
-        'Item':item,
+        'item':item,
         'related_items': related_items
     }
     return render(request,'store/item.html',context)
