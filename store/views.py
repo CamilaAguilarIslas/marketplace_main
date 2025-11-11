@@ -7,7 +7,7 @@ from .forms import SignupForm
 
 # Create your views here.
 def home(request):
-    items = Item.objects.filter(is_sold=False)
+    items = Item.objects.filter(is_solid=False)
     categories = Category.objects.all()
 
     context = {
