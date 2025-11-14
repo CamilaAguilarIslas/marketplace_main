@@ -1,11 +1,12 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
-from store.views import home
+from django.urls import path
+from django.contrib.auth import views as auth_views
+from .views import contact, detail, register
+
+from .forms import LoginForm
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('admin/', admin.site.urls),
-    path('store/', include('store.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+    path('contact/', contact, name='contact'),
+    path('register/', register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='store/login.html', authentication_form=LoginForm), name='login'),
+    path('detail/<int:pk>/', detail, name='detail'),
+]
