@@ -1,43 +1,50 @@
 {% extends 'store/base.html' %}
-{% block title %} Registro| {% endblock %}
 
+{% block title %}Registro| {% endblock %}
 
 {% block content %}
-<div class="row p-4">
-    <div class="col-6 bg-light p-4"></div>
-    <h4 class="mb-6 text-center">Registro</h4>
-    <hr>
-    <form action="."method="POST">
-        {% csrf_token %}
-        <div class="form-floating mb-3">
-            <h6>Username:</h6>
-            {{form.username}}
+<div class="row p-4 d-flex justify-content-center align-items-center">
+    <div class="col-6 bg-light p-4">
+        <h4 class="mb-6 text-center">Registro</h4>
+        <hr>
+        <form action="." method="POST">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <h6>Username:</h6>
+                {{form.username}}
             </div>
-            <div> <div class="form-floating mb-3">
+            <div class="form-floating mb-3">
                 <h6>Email:</h6>
-                {{form.Email}}
-                </div>
-               <div class="form-floating mb-3">
+                {{form.email}}
+            </div>
+            <div class="form-floating mb-3">
                 <h6>Password:</h6>
-                {{form.Password}}
-               </div>
-               <div class="form-floating mb-3">
+                {{form.password1}}
+            </div>
+            <div class="form-floating mb-3">
                 <h6>Repite Password:</h6>
-                {{form.Password2}}
-               </div>
+                {{form.password2}}
+            </div>
 
-               {% if form.errors of form.non_field_errors%}
-               <div class="mb-4 p-6 bg-danger">
-                {%for field in form%}
-                fields.errors
-                {% endblock %}
-                {{ form.non_field_errors }}
+            {% if form.errors or form.non_field_errors %}
+                <div class="mb-4 p-6 bg-danger rounded">
+                    {% for field in form %}
+                        <h5 class="text-white">
+                            {{field.errors}}
+                        </h5>
+                         
+                    {% endfor %}
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
 
-
-
-
-               </div>
-               {% endif %}
-               
+            <div class="d-flex justify-content-center align-items-center">
+                <button class="btn btn-primary mb-6">Register</button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="{% url 'login' %}">¿Ya tienes cuenta? Accesa aqui!</a>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
