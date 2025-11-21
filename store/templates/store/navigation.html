@@ -18,6 +18,7 @@
                 </li>
                
                 {% if request.user.is_authenticated %}
+                    <!-- nuevo link -->
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'add_item'%}">Add Item</a>
                     </li>

@@ -51,7 +51,8 @@ class SignupForm(UserCreationForm):
             'class': 'form-control'
         }
     ))
-    class NewItemForm(forms.ModelForm):
+
+class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ('category', 'name', 'description', 'price', 'image',)
